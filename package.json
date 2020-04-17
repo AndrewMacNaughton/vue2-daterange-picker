@@ -23,7 +23,8 @@
     "docs:dev": "concurrently \"npm run components:watch\" \"vuepress dev docs\"",
     "docs:build": "vuepress build docs",
     "prepublishOnly": "npm run lib",
-    "unit": "vue-cli-service test:unit"
+    "unit": "vue-cli-service test:unit",
+    "postinstall": "npm run lib"
   },
   "dependencies": {
     "vue": "^2.6.10"
