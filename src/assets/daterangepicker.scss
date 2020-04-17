@@ -205,9 +205,27 @@
 .daterangepicker td.in-range {
   background-color: #ebf4f8;
   border-color: transparent;
-  color: #000;
-  border-radius: 0;
+  color: #000;  
+  border-radius: 0px;
 }
+.daterangepicker td.in-range-vacation{
+  background-color: #f3c4c4;
+  border-radius: 0px;
+}
+
+.daterangepicker td.start-date-vacation,.daterangepicker td.end-date-vacation {
+  background-color: #f59191;
+}
+.daterangepicker td.in-range-weekend{
+  background-color: #d1c4e9;
+  border-radius: 0px;
+}
+
+.daterangepicker td.start-date-weekend,.daterangepicker td.end-date-weekend {
+  background-color: #9575cd;
+}
+
+
 
 .daterangepicker td.start-date {
   border-radius: 4px 0 0 4px;
@@ -320,12 +338,22 @@
   width: 100%;
 }
 
-.daterangepicker .ranges li {
+.daterangepicker .ranges li, .daterangepicker .leave-selector, {
   font-size: 12px;
   padding: 8px 12px;
   cursor: pointer;
 }
-
+.daterangepicker .leave-clearer{
+  font-size: 12px;
+  padding: 8px 12px;
+  li{
+    span{
+      cursor: pointer;
+      color:red;
+      font-weight:bold;
+    }
+  }
+}
 .daterangepicker .ranges li:hover {
   background-color: #eee;
 }

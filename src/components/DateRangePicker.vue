@@ -20,7 +20,7 @@
       </slot>
     </div>
     <transition name="slide-fade" mode="out-in">
-      <div
+     <div
         class="daterangepicker dropdown-menu ltr"
         :class="pickerStyles"
         v-if="open"
@@ -36,7 +36,7 @@
               :clickApply="clickedApply"
               :in_selection="in_selection"
               :autoApply="autoApply"
-        >
+        ><div class='leave-selector'><span>Select the type of leave:</span><select v-model='leaveType'><option value="vacation">Vacation</option><option value='weekend'>Weekend</option><option  value="lieu">Lieu</option><option  value="stat">Stat</option></select></div>
         </slot>
 
         <div class="calendars row no-gutters">
@@ -65,6 +65,7 @@
           </slot>
 
           <div class="calendars-container" v-if="showCalendars">
+            
             <div class="drp-calendar col left" :class="{single: singleDatePicker}">
               <div class="daterangepicker_input d-none d-sm-block" v-if="false">
                 <input class="input-mini form-control" type="text" name="daterangepicker_start"
@@ -77,10 +78,9 @@
                           :start="start" :end="end"
                           :minDate="min" :maxDate="max"
                           :show-dropdowns="showDropdowns"
-
+:date-format="dateFormatFn"
                           @change-month="changeLeftMonth"
-                          :date-format="dateFormatFn"
-
+                          :dateRange="leaveRange"
                           @dateClick="dateClick" @hoverDate="hoverDate"
                           :showWeekNumbers="showWeekNumbers"
                 ></calendar>
@@ -91,37 +91,19 @@
                              :hour24="timePicker24Hour"
                              :second-picker="timePickerSeconds"
                              :current-time="start"
-              />
+              />              
+            </div>
+             <div class="drp-calendar col right">
+               <ul class='leave-clearer'>
+                 <li v-for="(hole,index) in leaveRange" 
+                  :key="index">
+                    {{$dateUtil.format(hole.startDate,'dd mmm yyyy')}} - {{$dateUtil.format(hole.endDate,'dd mmm yyyy')}} 
+                    <span @click='deleteDate(index)'>X</span> 
+                  </li>
+               </ul>
             </div>
 
-            <div class="drp-calendar col right" v-if="!singleDatePicker">
-              <div class="daterangepicker_input" v-if="false">
-                <input class="input-mini form-control" type="text" name="daterangepicker_end"
-                       :value="endText"/>
-                <i class="fa fa-calendar glyphicon glyphicon-calendar"></i>
-              </div>
-              <div class="calendar-table">
-                <calendar :monthDate="nextMonthDate"
-                          :locale-data="locale"
-                          :start="start" :end="end"
-                          :minDate="min" :maxDate="max"
-                          :show-dropdowns="showDropdowns"
-
-                          @change-month="changeRightMonth"
-                          :date-format="dateFormatFn"
-
-                          @dateClick="dateClick" @hoverDate="hoverDate"
-                          :showWeekNumbers="showWeekNumbers"
-                ></calendar>
-              </div>
-              <calendar-time v-if="timePicker"
-                             @update="onUpdateEndTime"
-                             :miniute-increment="timePickerIncrement"
-                             :hour24="timePicker24Hour"
-                             :second-picker="timePickerSeconds"
-                             :current-time="end"
-              />
-            </div>
+            
           </div>
         </div>
         <!--
@@ -391,9 +373,14 @@
           iterator--
         }
       }
+      data.leaveRange = []
+      data.leaveType = 'vacation'
       return data
     },
     methods: {
+      deleteDate(index){
+        this.leaveRange.splice(index,1)
+      },
       dateFormatFn (classes, date) {
         let dt = new Date(date)
         dt.setHours(0, 0, 0, 0)
@@ -401,7 +388,7 @@
         start.setHours(0, 0, 0, 0)
         let end = new Date(this.end)
         end.setHours(0, 0, 0, 0)
-
+        classes.active = dt.setHours(0, 0, 0, 0) == new Date(start).setHours(0, 0, 0, 0) || dt.setHours(0, 0, 0, 0) == new Date(end).setHours(0, 0, 0, 0)  
         classes['in-range'] = dt >= start && dt <= end
 
         return this.dateFormat ? this.dateFormat(classes, date) : classes
@@ -492,7 +479,6 @@
         } else {
           this.open = !this.open
         }
-
         if (event === true)
           /**
            * Emits whenever the picker opens/closes
@@ -503,8 +489,11 @@
 
       },
       clickedApply () {
+        console.log('1234')
         // this.open = false
-        this.togglePicker(false, true)
+        // this.togglePicker(false, true)
+        this.leaveRange.push({startDate: this.start, endDate: this.end, type:this.leaveType})
+        console.log(this.leaveRange)
         /**
          * Emits when the user selects a range from the picker and clicks "apply" (if autoApply is true).
          * @param {json} value - json object containing the dates: {startDate, endDate}

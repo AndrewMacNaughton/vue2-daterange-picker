@@ -70,11 +70,14 @@
       dateFormat: {
         type: Function,
         default: null
+      },
+      dateRange:{
+        type: Array
       }
     },
     data () {
       let currentMonthDate = this.monthDate || this.start || new Date()
-      return {
+      return {        
         currentMonthDate,
         year_text: currentMonthDate.getFullYear(),
       }
@@ -117,6 +120,17 @@
           disabled: (this.minDate && dt.getTime() < this.minDate.getTime())
             || (this.maxDate && dt.getTime() > this.maxDate.getTime()),
         }
+        this.dateRange.forEach((hole)=>{
+          let starts = new Date(hole.startDate)
+          starts.setHours(0, 0, 0, 0)
+          let ends = new Date(hole.endDate)
+          ends.setHours(0, 0, 0, 0)
+          
+          classes['start-date-' + hole.type] =  classes['start-date-'  + hole.type] ? true : dt.getTime() === starts.getTime()
+          classes['end-date-' + hole.type] =  classes['end-date-' + hole.type] ? true : dt.getTime() === ends.getTime()
+          classes['in-range-' + hole.type] = classes['in-range-' + hole.type] ? true : dt >= starts && dt <= ends    
+          classes[hole.type] = true
+        })
         return this.dateFormat ? this.dateFormat(classes, date) : classes
 
       },
