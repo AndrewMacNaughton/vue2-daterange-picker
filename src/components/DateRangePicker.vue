@@ -489,11 +489,9 @@
 
       },
       clickedApply () {
-        console.log('1234')
         // this.open = false
         // this.togglePicker(false, true)
         this.leaveRange.push({startDate: this.start, endDate: this.end, type:this.leaveType})
-        console.log(this.leaveRange)
         /**
          * Emits when the user selects a range from the picker and clicks "apply" (if autoApply is true).
          * @param {json} value - json object containing the dates: {startDate, endDate}
