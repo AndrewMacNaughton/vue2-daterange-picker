@@ -446,7 +446,6 @@
         if (this.in_selection) {
           this.in_selection = false
           this.end = this.normalizeDatetime(value, this.end);
-          console.log('1234')
           if (this.end < this.start) {
             this.in_selection = true
             this.start = this.normalizeDatetime(value, this.start);
