@@ -208,25 +208,38 @@
   color: #000;  
   border-radius: 0px;
 }
-.daterangepicker td.in-range-vacation{
+
+.daterangepicker td.vacation{
   background-color: #f3c4c4;
-  border-radius: 0px;
+  border-radius: 0px;  
+  &.start-date,&.end-date{  
+    background-color: #f59191; 
+  }
 }
 
-.daterangepicker td.start-date-vacation,.daterangepicker td.end-date-vacation {
-  background-color: #f59191;
-}
-.daterangepicker td.in-range-weekend{
+.daterangepicker td.weeknd{
   background-color: #d1c4e9;
   border-radius: 0px;
+  &.start-date,&.end-date{  
+    background-color: #9575cd; 
+  }
+}
+.daterangepicker td.lieu{
+  background-color: #fff9c4;
+  border-radius: 0px;
+  &.start-date,&.end-date{  
+    background-color: #FFF59D;
+    color:black 
+  }
 }
 
-.daterangepicker td.start-date-weekend,.daterangepicker td.end-date-weekend {
-  background-color: #9575cd;
+.daterangepicker td.stat{
+  background-color: #d6fcd9;
+  border-radius: 0px;
+  &.start-date,&.end-date{  
+    background-color: #81c784;    
+  }
 }
-
-
-
 .daterangepicker td.start-date {
   border-radius: 4px 0 0 4px;
 }
@@ -338,15 +351,32 @@
   width: 100%;
 }
 
-.daterangepicker .ranges li, .daterangepicker .leave-selector, {
+.daterangepicker .ranges li, .daterangepicker .leave-selector {
   font-size: 12px;
   padding: 8px 12px;
-  cursor: pointer;
+  cursor: pointer;  
+}
+.daterangepicker .leave-selector span{
+  margin-right: 10px;  
 }
 .daterangepicker .leave-clearer{
   font-size: 12px;
   padding: 8px 12px;
   li{
+    &.vacation{
+      background-color: #f3c4c4;
+    }
+    &.weeknd{
+      background-color: #d1c4e9;
+    }
+    &.lieu{
+      background-color: #fff9c4;
+    }
+    &.stat{
+      background-color: #d6fcd9;
+    }
+    list-style: none;
+    padding:4px;
     span{
       cursor: pointer;
       color:red;

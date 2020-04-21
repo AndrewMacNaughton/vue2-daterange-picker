@@ -36,7 +36,7 @@
               :clickApply="clickedApply"
               :in_selection="in_selection"
               :autoApply="autoApply"
-        ><div class='leave-selector'><span>Select the type of leave:</span><select v-model='leaveType'><option value="vacation">Vacation</option><option value='weekend'>Weekend</option><option  value="lieu">Lieu</option><option  value="stat">Stat</option></select></div>
+        >          
         </slot>
 
         <div class="calendars row no-gutters">
@@ -94,10 +94,20 @@
               />              
             </div>
              <div class="drp-calendar col right">
+               <div class='leave-selector'>
+            <span>Select the type of leave:</span>
+            <select v-model='leaveType'>
+              <option value="vacation">Vacation</option>
+              <option value='weeknd'>Weekend</option>
+              <option value="lieu">Lieu</option>
+              <option value="stat">Stat</option>
+            </select>
+          </div>
                <ul class='leave-clearer'>
                  <li v-for="(hole,index) in leaveRange" 
-                  :key="index">
-                    {{$dateUtil.format(hole.startDate,'dd mmm yyyy')}} - {{$dateUtil.format(hole.endDate,'dd mmm yyyy')}} 
+                  :key="index" :class="hole.type">
+                  {{hole.type.substring(0,1).toUpperCase()}}:
+                                      {{$dateUtil.format(hole.startDate,'dd mmm yyyy')}} - {{$dateUtil.format(hole.endDate,'dd mmm yyyy')}} 
                     <span @click='deleteDate(index)'>X</span> 
                   </li>
                </ul>
@@ -436,10 +446,18 @@
         if (this.in_selection) {
           this.in_selection = false
           this.end = this.normalizeDatetime(value, this.end);
-
+          console.log('1234')
           if (this.end < this.start) {
             this.in_selection = true
             this.start = this.normalizeDatetime(value, this.start);
+          }
+          //check whether the dates are in the any of the current ranges
+          const pp = this.leaveRange.find((range)=>{
+            return this.start >= range.startDate && this.start <= range.endDate || range.startDate>=this.start && range.startDate < this.end
+          })
+          if(pp){
+             this.in_selection = true
+             this.start = this.normalizeDatetime(value, this.start);
           }
           if (!this.in_selection) {
             this.onSelect();
@@ -518,7 +536,6 @@
       },
       clickRange (value) {
         this.in_selection = false;
-
         if (this.$dateUtil.isValidDate(value[0]) && this.$dateUtil.isValidDate(value[1])) {
           this.start = this.$dateUtil.validateDateRange(new Date(value[0]), this.minDate, this.maxDate)
           this.end = this.$dateUtil.validateDateRange(new Date(value[1]), this.minDate, this.maxDate)

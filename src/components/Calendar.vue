@@ -120,16 +120,18 @@
           disabled: (this.minDate && dt.getTime() < this.minDate.getTime())
             || (this.maxDate && dt.getTime() > this.maxDate.getTime()),
         }
-        this.dateRange.forEach((hole)=>{
-          let starts = new Date(hole.startDate)
+        this.dateRange.forEach((_date)=>{
+          let starts = new Date(_date.startDate)
           starts.setHours(0, 0, 0, 0)
-          let ends = new Date(hole.endDate)
+          let ends = new Date(_date.endDate)
           ends.setHours(0, 0, 0, 0)
           
-          classes['start-date-' + hole.type] =  classes['start-date-'  + hole.type] ? true : dt.getTime() === starts.getTime()
-          classes['end-date-' + hole.type] =  classes['end-date-' + hole.type] ? true : dt.getTime() === ends.getTime()
-          classes['in-range-' + hole.type] = classes['in-range-' + hole.type] ? true : dt >= starts && dt <= ends    
-          classes[hole.type] = true
+          classes['start-date'] =  classes['start-date'] ? true : dt.getTime() === starts.getTime()
+          classes['end-date'] =  classes['end-date'] ? true : dt.getTime() === ends.getTime()
+          classes['in-range'] = classes['in-range'] ? true : dt >= starts && dt <= ends        
+          if(dt.getTime() === starts.getTime() || dt.getTime() === ends.getTime() || dt >= starts && dt <= ends){
+            classes[_date.type] = true
+          }      
         })
         return this.dateFormat ? this.dateFormat(classes, date) : classes
 
