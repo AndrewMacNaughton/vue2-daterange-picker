@@ -513,7 +513,7 @@
          * Emits when the user selects a range from the picker and clicks "apply" (if autoApply is true).
          * @param {json} value - json object containing the dates: {startDate, endDate}
          */
-        this.$emit('update', {startDate: this.start, endDate: this.end})
+        this.$emit('update', {startDate: this.start, endDate: this.end, type:this.leaveType})
       },
       onSelect () {
         /**
