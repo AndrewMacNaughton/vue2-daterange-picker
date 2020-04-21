@@ -14,7 +14,7 @@
         :endDate="end"
         :ranges="ranges"
       >
-        <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+        <i class="glyphicon glyphicon-calendar fa fa-calendar material-icons">event</i>&nbsp;
         <span>{{rangeText}}</span>
         <b class="caret"></b>
       </slot>
@@ -371,7 +371,7 @@
         data.end = endDate ? new Date(endDate) : null
       }
       data.in_selection = false
-      data.open = true
+      data.open = false
       //When alwaysShowCalendars = false and custom range is clicked
       data.showCustomRangeCalendars = false
 
@@ -530,7 +530,7 @@
           this.start = startDate ? new Date(startDate) : null
           this.end = endDate ? new Date(endDate) : null
           // this.open = false
-          // this.togglePicker(false, true)
+          this.togglePicker(false, true)
         }
       },
       clickRange (value) {
