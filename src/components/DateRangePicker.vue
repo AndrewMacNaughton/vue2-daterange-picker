@@ -389,7 +389,9 @@
     },
     methods: {
       deleteDate(index){
+        this.$emit('remove',this.leaveRange[index])
         this.leaveRange.splice(index,1)
+        
       },
       dateFormatFn (classes, date) {
         let dt = new Date(date)
