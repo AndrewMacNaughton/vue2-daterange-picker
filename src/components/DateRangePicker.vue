@@ -14,7 +14,7 @@
         :endDate="end"
         :ranges="ranges"
       >
-        <i class="glyphicon glyphicon-calendar fa fa-calendar material-icons">event</i>&nbsp;
+        <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
         <span>{{rangeText}}</span>
         <b class="caret"></b>
       </slot>
