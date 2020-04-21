@@ -371,7 +371,7 @@
         data.end = endDate ? new Date(endDate) : null
       }
       data.in_selection = false
-      data.open = false
+      data.open = true
       //When alwaysShowCalendars = false and custom range is clicked
       data.showCustomRangeCalendars = false
 
