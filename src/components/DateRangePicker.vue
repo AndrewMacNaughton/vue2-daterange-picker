@@ -40,6 +40,22 @@
         </slot>
 
         <div class="calendars row no-gutters">
+           <div class='leave-selector'>
+                 <span>Select the type of leave:</span>
+                  <select v-model='leaveType'>
+                    <option value="vacation">Vacation</option>
+                    <option value='weeknd'>Weekend</option>
+                    <option value="lieu">Lieu</option>
+                    <option value="stat">Stat</option>
+                  </select>
+              </div>
+              <ul class='leave-clearer'>
+                <li v-for="(hole,index) in leaveRange" :key="index" :class="hole.type">
+                  {{hole.type.substring(0,1).toUpperCase()}}:
+                  {{$dateUtil.format(hole.startDate,'dd mmm yyyy')}} - {{$dateUtil.format(hole.endDate,'dd mmm yyyy')}} 
+                  <span @click='deleteDate(index)'>X</span> 
+                 </li>
+              </ul>
           <!--
             Allows you to change the range
 
@@ -114,28 +130,8 @@
                              :hour24="timePicker24Hour"
                              :second-picker="timePickerSeconds"
                              :current-time="start"
-              />              
-               
-               <div class='leave-selector'>
-            <span>Select the type of leave:</span>
-            <select v-model='leaveType'>
-              <option value="vacation">Vacation</option>
-              <option value='weeknd'>Weekend</option>
-              <option value="lieu">Lieu</option>
-              <option value="stat">Stat</option>
-            </select>
-          </div>
-               <ul class='leave-clearer'>
-                 <li v-for="(hole,index) in leaveRange" 
-                  :key="index" :class="hole.type">
-                  {{hole.type.substring(0,1).toUpperCase()}}:
-                                      {{$dateUtil.format(hole.startDate,'dd mmm yyyy')}} - {{$dateUtil.format(hole.endDate,'dd mmm yyyy')}} 
-                    <span @click='deleteDate(index)'>X</span> 
-                  </li>
-               </ul>
+              />  
             </div>
-
-            
           </div>
         </div>
         <!--
