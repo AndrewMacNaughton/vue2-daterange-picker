@@ -40,7 +40,8 @@
         </slot>
 
         <div class="calendars row no-gutters">
-           <div class='leave-selector'>
+          <div class="col-3">
+           <div class='leave-selector '>
                  <span>Select the type of leave:</span>
                   <select v-model='leaveType'>
                     <option value="vacation">Vacation</option>
@@ -51,11 +52,11 @@
               </div>
               <ul class='leave-clearer'>
                 <li v-for="(hole,index) in leaveRange" :key="index" :class="hole.type">
-                  {{hole.type.substring(0,1).toUpperCase()}}:
                   {{$dateUtil.format(hole.startDate,'dd mmm yyyy')}} - {{$dateUtil.format(hole.endDate,'dd mmm yyyy')}} 
                   <span @click='deleteDate(index)'>X</span> 
                  </li>
               </ul>
+             </div> 
           <!--
             Allows you to change the range
 
@@ -82,7 +83,7 @@
 
           <div class="calendars-container" v-if="showCalendars">
             
-            <div class="drp-calendar col left" :class="{single: singleDatePicker}">
+            <div class="drp-calendar col left col-4" :class="{single: singleDatePicker}">
               <div class="daterangepicker_input d-none d-sm-block" v-if="false">
                 <input class="input-mini form-control" type="text" name="daterangepicker_start"
                        :value="startText"/>
@@ -94,7 +95,7 @@
                           :start="start" :end="end"
                           :minDate="min" :maxDate="max"
                           :show-dropdowns="showDropdowns"
-:date-format="dateFormatFn"
+                          :date-format="dateFormatFn"
                           @change-month="changeLeftMonth"
                           :dateRange="leaveRange"
                           @dateClick="dateClick" @hoverDate="hoverDate"
@@ -109,7 +110,7 @@
                              :current-time="start"
               />              
             </div>
-             <div class="drp-calendar col right">
+             <div class="drp-calendar col right col-4">
                 <div class="calendar-table">
                 <calendar :monthDate="nextMonthDate"
                           :locale-data="locale"
@@ -725,9 +726,9 @@
     }
 
     @media screen and (min-width: 540px) {
-      min-width: 486px;
+      min-width: 782;
       &.show-weeknumbers {
-        min-width: 486px + $week-width;
+        min-width: 782 + $week-width;
       }
 
     }
