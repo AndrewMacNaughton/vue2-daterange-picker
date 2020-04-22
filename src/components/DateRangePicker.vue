@@ -39,8 +39,8 @@
         >          
         </slot>
 
-        <div class="calendars row no-gutters">
-          <div class="col-3">
+        <div class="calendars row no-gutters md-layout">
+          <div class="col-3 md-layout-item md-size-30">
            <div class='leave-selector '>
                  <span>Select the type of leave:</span>
                   <select v-model='leaveType'>
@@ -83,7 +83,7 @@
 
           <div class="calendars-container" v-if="showCalendars">
             
-            <div class="drp-calendar col left col-4" :class="{single: singleDatePicker}">
+            <div class="drp-calendar col left col-4 md-layout-item md-size-35" :class="{single: singleDatePicker}">
               <div class="daterangepicker_input d-none d-sm-block" v-if="false">
                 <input class="input-mini form-control" type="text" name="daterangepicker_start"
                        :value="startText"/>
@@ -110,7 +110,7 @@
                              :current-time="start"
               />              
             </div>
-             <div class="drp-calendar col right col-4">
+             <div class="drp-calendar col right col-4  md-layout-item md-size-35">
                 <div class="calendar-table">
                 <calendar :monthDate="nextMonthDate"
                           :locale-data="locale"
