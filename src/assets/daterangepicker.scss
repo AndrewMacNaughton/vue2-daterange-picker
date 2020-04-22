@@ -217,7 +217,7 @@
   }
 }
 
-.daterangepicker td.weeknd{
+.daterangepicker td.regDaysOff{
   background-color: #d1c4e9;
   border-radius: 0px;
   &.start-date,&.end-date{  
@@ -366,7 +366,7 @@
     &.vacation{
       background-color: #f3c4c4;
     }
-    &.weeknd{
+    &.regDaysOff{
       background-color: #d1c4e9;
     }
     &.lieu{

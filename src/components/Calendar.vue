@@ -121,19 +121,22 @@
             || (this.maxDate && dt.getTime() > this.maxDate.getTime()),
         }
         if(this.dateRange){
-          this.dateRange.forEach((_date)=>{
-            let starts = new Date(_date.startDate)
-            starts.setHours(0, 0, 0, 0)
-            let ends = new Date(_date.endDate)
-            ends.setHours(0, 0, 0, 0)
-            
-            classes['start-date'] =  classes['start-date'] ? true : dt.getTime() === starts.getTime()
-            classes['end-date'] =  classes['end-date'] ? true : dt.getTime() === ends.getTime()
-            classes['in-range'] = classes['in-range'] ? true : dt >= starts && dt <= ends        
-            if(dt.getTime() === starts.getTime() || dt.getTime() === ends.getTime() || dt >= starts && dt <= ends){
-              classes[_date.type] = true
-            }      
-          })
+          // This leaves the days in the calendar that are for the next or previous month alone.
+          if(date.getMonth() + 1 === this.month){
+            this.dateRange.forEach((_date)=>{
+              let starts = new Date(_date.startDate)
+              starts.setHours(0, 0, 0, 0)
+              let ends = new Date(_date.endDate)
+              ends.setHours(0, 0, 0, 0)
+              classes.off = date.getMonth() + 1 !== this.month
+              classes['start-date'] =  classes['start-date'] ? true : dt.getTime() === starts.getTime()
+              classes['end-date'] =  classes['end-date'] ? true : dt.getTime() === ends.getTime()
+              classes['in-range'] = classes['in-range'] ? true : dt >= starts && dt <= ends        
+              if(dt.getTime() === starts.getTime() || dt.getTime() === ends.getTime() || dt >= starts && dt <= ends){
+                classes[_date.type] = true
+              }      
+            })
+          }
         }
         return this.dateFormat ? this.dateFormat(classes, date) : classes
 

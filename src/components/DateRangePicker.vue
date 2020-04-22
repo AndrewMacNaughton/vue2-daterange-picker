@@ -40,12 +40,12 @@
         </slot>
 
         <div class="calendars row no-gutters md-layout">
-          <div class="col-3 md-layout-item md-size-25">
+          <div class="col-3 md-layout-item md-size-28">
            <div class='leave-selector '>
                  <span>Select the type of leave:</span>
                   <select v-model='leaveType'>
                     <option value="vacation">Vacation</option>
-                    <option value='weeknd'>Weekend</option>
+                    <option value='regDaysOff'>Weekend</option>
                     <option value="lieu">Lieu</option>
                     <option value="stat">Stat</option>
                   </select>
@@ -81,7 +81,7 @@
             ></calendar-ranges>
           </slot>
 
-          <div class="calendars-container md-layout-item md-size-75" v-if="showCalendars">
+          <div class="calendars-container md-layout-item md-size-72" v-if="showCalendars">
             
             <div class="drp-calendar col left col-4" :class="{single: singleDatePicker}">
               <div class="daterangepicker_input d-none d-sm-block" v-if="false">
