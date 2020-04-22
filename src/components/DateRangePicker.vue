@@ -726,9 +726,9 @@
     }
 
     @media screen and (min-width: 540px) {
-      min-width: 782;
+      min-width: 782px;
       &.show-weeknumbers {
-        min-width: 782 + $week-width;
+        min-width: 782px + $week-width;
       }
 
     }
