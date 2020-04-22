@@ -94,6 +94,28 @@
               />              
             </div>
              <div class="drp-calendar col right">
+                <div class="calendar-table">
+                <calendar :monthDate="nextMonthDate"
+                          :locale-data="locale"
+                          :start="start" :end="end"
+                          :minDate="min" :maxDate="max"
+                          :show-dropdowns="showDropdowns"
+
+                          @change-month="changeRightMonth"
+                          :date-format="dateFormatFn"
+
+                          @dateClick="dateClick" @hoverDate="hoverDate"
+                          :showWeekNumbers="showWeekNumbers"
+                ></calendar>
+              </div>
+              <calendar-time v-if="timePicker"
+                             @update="onUpdateStartTime"
+                             :miniute-increment="timePickerIncrement"
+                             :hour24="timePicker24Hour"
+                             :second-picker="timePickerSeconds"
+                             :current-time="start"
+              />              
+               
                <div class='leave-selector'>
             <span>Select the type of leave:</span>
             <select v-model='leaveType'>
