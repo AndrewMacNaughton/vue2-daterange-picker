@@ -120,7 +120,7 @@
 
                           @change-month="changeRightMonth"
                           :date-format="dateFormatFn"
-
+                          :dateRange="leaveRange"
                           @dateClick="dateClick" @hoverDate="hoverDate"
                           :showWeekNumbers="showWeekNumbers"
                 ></calendar>
