@@ -354,14 +354,20 @@
 .daterangepicker .ranges li, .daterangepicker .leave-selector {
   font-size: 12px;
   padding: 8px 12px;
-  cursor: pointer;  
+  cursor: pointer;
+  select.danger{    
+      border-color: #dc3545;    
+  }  
+}
+.daterangepicker .leave-selector{
+  padding-bottom: 0px;
 }
 .daterangepicker .leave-selector span{
   margin-right: 10px;  
 }
 .daterangepicker .leave-clearer{
   font-size: 12px;
-  padding: 8px 12px;
+  padding: 8px 0px;
   li{
     &.vacation{
       background-color: #f3c4c4;

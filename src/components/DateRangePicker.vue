@@ -43,7 +43,7 @@
           <div class="col-3 md-layout-item md-size-28">
            <div class='leave-selector '>
                  <span>Select the type of leave:</span>
-                  <select v-model='leaveType'>
+                  <select v-model='leaveType' :class="{'danger':!leaveType}">
                     <option value="vacation">Vacation</option>
                     <option value='regDaysOff'>Weekend</option>
                     <option value="lieu">Lieu</option>
@@ -161,6 +161,12 @@
               @click="clickAway"
             >{{locale.cancelLabel}}
             </button>
+             <button
+              class="cancelBtn btn btn-sm btn-danger md-button md-accent  md-raised  md-theme-demo-light "
+              type="button"
+              @click="clickedClear"
+            >{{locale.clearLabel}}
+            </button>   
             <button
               class="applyBtn btn btn-sm btn-success md-button md-primary md-raised  md-theme-demo-light "
               :disabled="applyDisabled"
@@ -168,12 +174,7 @@
               @click="clickedApply"
             >{{locale.applyLabel}}
             </button>
-            <button
-              class="cancelBtn btn btn-sm btn-danger md-button md-accent  md-raised  md-theme-demo-light "
-              type="button"
-              @click="clickedClear"
-            >{{locale.clearLabel}}
-            </button>   
+           
                     
           </div>
         </slot>
