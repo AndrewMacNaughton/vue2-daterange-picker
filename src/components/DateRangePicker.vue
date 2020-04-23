@@ -156,20 +156,20 @@
           <div class="drp-buttons" v-if="!autoApply">
             <span class="drp-selected" v-if="showCalendars">{{rangeText}}</span>
             <button
-              class="cancelBtn btn btn-sm btn-default"
+              class="cancelBtn btn btn-sm btn-default md-button md-raised"
               type="button"
               @click="clickAway"
             >{{locale.cancelLabel}}
             </button>
             <button
-              class="applyBtn btn btn-sm btn-success md-button md-button-primary"
+              class="applyBtn btn btn-sm btn-success md-button md-primary md-raised"
               :disabled="applyDisabled"
               type="button"
               @click="clickedApply"
             >{{locale.applyLabel}}
             </button>
             <button
-              class="cancelBtn btn btn-sm btn-danger  md-button md-button-accent"
+              class="cancelBtn btn btn-sm btn-danger  md-button md-accent  md-raised"
               type="button"
               @click="clickedClear"
             >{{locale.clearLabel}}
