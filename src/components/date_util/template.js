@@ -61,14 +61,15 @@ const DateUtil = {
       separator: ' - ',
       applyLabel: 'Apply',
       cancelLabel: 'Cancel',
+      clearLabel: 'Clear All',
       weekLabel: 'W',
       customRangeLabel: 'Custom Range',
-      daysOfWeek: [],//days of week (short),
-      monthNames: [],// month names (short),
+      daysOfWeek: [], // days of week (short),
+      monthNames: [], // month names (short),
       firstDay: 0
-    };
+    }
 
-    return {...default_locale, ...options }
+    return { ...default_locale, ...options }
   },
   /**
    * Returns date in the format YYYYMM

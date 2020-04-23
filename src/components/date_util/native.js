@@ -1,12 +1,12 @@
-import {dateFormat, getWeek} from '../dateformat'
+import { dateFormat, getWeek } from '../dateformat'
 
 const DateUtil = {
   isSame: (date1, date2, granularity = 'date') => {
     let dt1 = new Date(date1)
     let dt2 = new Date(date2)
-    if(granularity === 'date') {
-      dt1.setHours(0,0,0,0);
-      dt2.setHours(0,0,0,0);
+    if (granularity === 'date') {
+      dt1.setHours(0, 0, 0, 0)
+      dt2.setHours(0, 0, 0, 0)
     }
     return dt1.getTime() === dt2.getTime()
   },
@@ -32,18 +32,18 @@ const DateUtil = {
     return prevMonthDate
   },
   validateDateRange: (newDate, min, max) => {
-    let max_date = new Date(max);
-    let min_date = new Date(min);
+    let max_date = new Date(max)
+    let min_date = new Date(min)
 
-    if(max && newDate.getTime() > max_date.getTime()) {
-      return max_date;
+    if (max && newDate.getTime() > max_date.getTime()) {
+      return max_date
     }
 
-    if(min && newDate.getTime() < min_date.getTime()) {
-      return min_date;
+    if (min && newDate.getTime() < min_date.getTime()) {
+      return min_date
     }
 
-    return newDate;
+    return newDate
   },
   localeData: (options) => {
     let default_locale = {
@@ -52,21 +52,22 @@ const DateUtil = {
       separator: ' - ',
       applyLabel: 'Apply',
       cancelLabel: 'Cancel',
+      clearLabel: 'Clear All',
       weekLabel: 'W',
       customRangeLabel: 'Custom Range',
       daysOfWeek: dateFormat.i18n.dayNames.slice(0, 7).map(d => d.substring(0, 2)),
       monthNames: dateFormat.i18n.monthNames.slice(0, 12),
       firstDay: 0
-    };
+    }
 
-    return {...default_locale, ...options }
+    return { ...default_locale, ...options }
   },
   yearMonth: (date) => {
     let month = date.getMonth() + 1
-    return date.getFullYear() + (month < 10 ? '0':'') + month
+    return date.getFullYear() + (month < 10 ? '0' : '') + month
   },
   isValidDate: (d) => {
-    return d instanceof Date && !isNaN(d);
+    return d instanceof Date && !isNaN(d)
   }
 }
 

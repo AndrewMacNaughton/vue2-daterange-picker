@@ -1,10 +1,10 @@
 import { isSameDay, getDaysInMonth, getISOWeek, format, addMonths, subMonths, isValid } from 'date-fns'
-import {dateFormat} from '../dateformat'
+import { dateFormat } from '../dateformat'
 
 const DateUtil = {
   isSame: (date1, date2, granularity = 'date') => {
     if (granularity === 'day')
-      return isSameDay(date1, date2)
+      {return isSameDay(date1, date2)}
   },
   daysInMonth: (year, month) => {
     return getDaysInMonth(new Date(year, month - 1, 1))
@@ -22,18 +22,18 @@ const DateUtil = {
     return subMonths(date, 1)
   },
   validateDateRange: (newDate, min, max) => {
-    let max_date = new Date(max);
-    let min_date = new Date(min);
+    let max_date = new Date(max)
+    let min_date = new Date(min)
 
     if (max && newDate.getTime() > max_date.getTime()) {
-      return max_date;
+      return max_date
     }
 
     if (min && newDate.getTime() < min_date.getTime()) {
-      return min_date;
+      return min_date
     }
 
-    return newDate;
+    return newDate
   },
   localeData: (options) => {
     let default_locale = {
@@ -42,21 +42,22 @@ const DateUtil = {
       separator: ' - ',
       applyLabel: 'Apply',
       cancelLabel: 'Cancel',
+      clearLabel: 'Clear All',
       weekLabel: 'W',
       customRangeLabel: 'Custom Range',
       daysOfWeek: dateFormat.i18n.dayNames.slice(0, 7),
       monthNames: dateFormat.i18n.monthNames.slice(0, 12),
       firstDay: 0
-    };
+    }
 
-    return {...default_locale, ...options}
+    return { ...default_locale, ...options }
   },
   yearMonth: (date) => {
     let month = date.getMonth() + 1
     return date.getFullYear() + (month < 10 ? '0' : '') + month
   },
   isValidDate: (d) => {
-    return isValid(d);
+    return isValid(d)
   }
 }
 

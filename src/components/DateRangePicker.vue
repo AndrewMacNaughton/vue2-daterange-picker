@@ -162,12 +162,19 @@
             >{{locale.cancelLabel}}
             </button>
             <button
-              class="applyBtn btn btn-sm btn-success"
+              class="applyBtn btn btn-sm btn-success md-button md-button-primary"
               :disabled="applyDisabled"
               type="button"
               @click="clickedApply"
             >{{locale.applyLabel}}
             </button>
+            <button
+              class="cancelBtn btn btn-sm btn-danger  md-button md-button-accent"
+              type="button"
+              @click="clickedClear"
+            >{{locale.clearLabel}}
+            </button>   
+                    
           </div>
         </slot>
       </div>
@@ -554,6 +561,9 @@
           // this.open = false
           this.togglePicker(false, true)
         }
+      },
+      clickedClear(){
+        this.leaveRange = []
       },
       clickRange (value) {
         this.in_selection = false;
