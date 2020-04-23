@@ -163,7 +163,7 @@
             </button>
             <button
               class="applyBtn btn btn-sm btn-success"
-              :disabled="in_selection"
+              :disabled="applyDisabled"
               type="button"
               @click="clickedApply"
             >{{locale.applyLabel}}
@@ -403,7 +403,8 @@
         }
       }
       data.leaveRange = []
-      data.leaveType = 'vacation'
+      data.leaveType = null
+      //data.leaveType = 'vacation'
       return data
     },
     methods: {
@@ -591,6 +592,17 @@
       },
     },
     computed: {
+      applyDisabled(){
+        if(this.in_selection){
+          return true
+        }else{
+          if(this.leaveType){
+            return false
+          }else{
+            return true
+          }
+        }
+      },
       showCalendars () {
         return this.alwaysShowCalendars || this.showCustomRangeCalendars
       },
