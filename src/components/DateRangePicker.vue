@@ -153,21 +153,15 @@
               :in_selection="in_selection"
               :autoApply="autoApply"
         >
-          <div class="drp-buttons" v-if="!autoApply">
-            <span class="drp-selected" v-if="showCalendars">{{rangeText}}</span>
-            <button
-              class="cancelBtn btn btn-sm btn-default md-button md-raised  md-theme-demo-light "
-              type="button"
-              @click="clickAway"
-            >{{locale.cancelLabel}}
-            </button>
+          <div class="drp-buttons">
+                   
              <button
               class="cancelBtn btn btn-sm btn-danger md-button md-accent  md-raised  md-theme-demo-light "
               type="button"
               @click="clickedClear"
             >{{locale.clearLabel}}
             </button>   
-            <button
+            <button v-if="!autoApply"
               class="applyBtn btn btn-sm btn-success md-button md-primary md-raised  md-theme-demo-light "
               :disabled="applyDisabled"
               type="button"
@@ -481,10 +475,10 @@
             this.start = this.normalizeDatetime(value, this.start);
           }
           //check whether the dates are in the any of the current ranges
-          const pp = this.leaveRange.find((range)=>{
+          const isInRange = this.leaveRange.find((range)=>{
             return this.start >= range.startDate && this.start <= range.endDate || range.startDate>=this.start && range.startDate < this.end
           })
-          if(pp){
+          if(isInRange){
              this.in_selection = true
              this.start = this.normalizeDatetime(value, this.start);
           }
@@ -536,8 +530,9 @@
 
       },
       clickedApply () {
-        // this.open = false
-        // this.togglePicker(false, true)
+        // Force the button to be disabled here.
+        this.in_selection = true 
+        // Add to the ranges.
         this.leaveRange.push({startDate: this.start, endDate: this.end, type:this.leaveType})
         /**
          * Emits when the user selects a range from the picker and clicks "apply" (if autoApply is true).
