@@ -560,6 +560,7 @@
       },
       clickedClear(){
         this.leaveRange = []
+        this.$emit('clickedClear')
       },
       clickRange (value) {
         this.in_selection = false;
