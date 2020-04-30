@@ -484,7 +484,7 @@
           }
           if (!this.in_selection) {
             this.onSelect();
-            if (this.autoApply)
+            if (this.autoApply && this.leaveType)
               this.clickedApply();
           }
         } else {
@@ -494,7 +494,7 @@
             this.in_selection = true
           } else {
             this.onSelect();
-            if (this.autoApply)
+            if (this.autoApply && this.leaveType)
               this.clickedApply();
           }
         }
