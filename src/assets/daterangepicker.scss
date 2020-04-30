@@ -368,6 +368,9 @@
 .daterangepicker .leave-clearer{
   font-size: 12px;
   padding: 0px;
+  &.row{
+    margin:0px;
+  }
   li{
     &.vacation{
       background-color: #f3c4c4;

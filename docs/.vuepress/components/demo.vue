@@ -10,13 +10,11 @@
           :locale-data="{ firstDay: 1, format: 'yyyy-mm-dd HH:MM:ss' }"
           :minDate="minDate" :maxDate="maxDate"
           :singleDatePicker="singleDatePicker"
-          :timePicker="timePicker"
-          :timePicker24Hour="timePicker24Hour"
           :showWeekNumbers="showWeekNumbers"
           :showDropdowns="showDropdowns"
+          :showMulti="showMultiSelect"
           :autoApply="autoApply"
           v-model="dateRange"
-          :ranges="show_ranges ? undefined : false"
           @update="updateValues"
           @toggle="checkOpen"
           :linkedCalendars="linkedCalendars"
@@ -105,24 +103,15 @@
         </small>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="timePicker" v-model="timePicker">
-        <label class="form-check-label" for="timePicker">
-          timePicker
+        <input class="form-check-input" type="checkbox" id="showMultiSelect" v-model="showMultiSelect">
+        <label class="form-check-label" for="showMultiSelect">
+          Show Multi Select
         </label>
         <small class="form-text text-muted">
-          Allow the user to select time.
+          Show the Multiple select on the left side
         </small>
       </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="timePicker24Hour"
-               v-model="timePicker24Hour">
-        <label class="form-check-label" for="timePicker24Hour">
-          timePicker24Hour
-        </label>
-        <small class="form-text text-muted">
-          The time selection uses the 24 hour format
-        </small>
-      </div>
+      
       <div class="form-check">
         <input class="form-check-input" type="checkbox" id="showDropdowns" v-model="showDropdowns">
         <label class="form-check-label" for="showDropdowns">
@@ -142,16 +131,7 @@
           click the apply button)
         </small>
       </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="show_ranges" v-model="show_ranges">
-        <label class="form-check-label" for="show_ranges">
-          show ranges
-        </label>
-        <small class="form-text text-muted">
-          You can set this to false in order to hide the ranges selection. Otherwise it is an object
-          with key/value.
-        </small>
-      </div>
+      
       <div class="form-check">
         <input class="form-check-input" type="checkbox" id="linkedCalendars" v-model="linkedCalendars">
         <label class="form-check-label" for="linkedCalendars">
@@ -215,13 +195,11 @@
         // minDate: '',
         // maxDate: '',
         dateRange: {
-          startDate: '2019-12-10',
-          endDate: '2019-12-20',
+          startDate: '2020-05-10',
+          endDate: '2020-05-20',
         },
-        show_ranges: true,
         singleDatePicker: false,
-        timePicker: true,
-        timePicker24Hour: true,
+        showMultiSelect: false,
         showDropdowns: true,
         autoApply: false,
         showWeekNumbers: true,
