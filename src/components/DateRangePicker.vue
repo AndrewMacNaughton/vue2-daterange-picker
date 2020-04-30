@@ -154,7 +154,8 @@
               :autoApply="autoApply"
         >
           <div class="drp-buttons">
-                   
+             <span class="drp-selected helper-text" v-if="showCalendars">{{rangeText}}</span>
+            <div>
              <button
               class="cancelBtn btn btn-sm btn-danger md-button md-accent  md-raised  md-theme-demo-light "
               type="button"
@@ -168,7 +169,7 @@
               @click="clickedApply"
             >{{locale.applyLabel}}
             </button>
-           
+           </div>
                     
           </div>
         </slot>
@@ -614,14 +615,14 @@
         return this.alwaysShowCalendars || this.showCustomRangeCalendars
       },
       startText () {
-        if (this.start === null)
+        if (this.start === null)     
           return ''
-        return this.$dateUtil.format(this.start, this.locale.format)
+        return 'Start Date: ' + this.$dateUtil.format(this.start, this.locale.format)
       },
       endText () {
-        if (this.end === null)
+        if (this.end === null) 
           return ''
-        return this.$dateUtil.format(this.end, this.locale.format)
+        return 'End Date: ' + this.$dateUtil.format(this.end, this.locale.format)
       },
       rangeText () {
         let range = this.startText;

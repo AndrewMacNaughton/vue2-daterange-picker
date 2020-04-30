@@ -351,10 +351,13 @@
   width: 100%;
 }
 
-.daterangepicker .ranges li, .daterangepicker .leave-selector {
+.daterangepicker .ranges li, .daterangepicker .leave-selector, .helper-text {
   font-size: 12px;
   padding: 8px 12px;
   cursor: pointer;  
+}
+.helper-text{
+  text-align: left;
 }
 .daterangepicker .leave-selector{
   padding-bottom: 0px;
